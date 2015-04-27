@@ -27,7 +27,6 @@ public:
     {
         mainWindow = new MainWindow();
         icubexWindow = new ICubeXWindow();
-
     }
 
     void shutdown() override
@@ -58,7 +57,8 @@ public:
                                          DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);
-            setContentOwned (new ICubeXComponent(), true);
+            icubexComp = new ICubeXComponent();
+            setContentOwned (icubexComp, true);
             setResizable (true, false);
             centreWithSize (getWidth()-300, getHeight());
             setVisible (true);
@@ -71,6 +71,8 @@ public:
             JUCEApplication::getInstance()->systemRequestedQuit();
         }
     private:
+        
+        ScopedPointer<ICubeXComponent> icubexComp;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(ICubeXWindow)
         
     };
@@ -88,7 +90,8 @@ public:
                                         DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);
-            setContentOwned (new StringDemoComponent(), true);
+            stringdemoComp = new StringDemoComponent();
+            setContentOwned (stringdemoComp, true);
             setResizable (true, false);
             centreWithSize (getWidth(), getHeight());
             setVisible (true);
@@ -110,6 +113,7 @@ public:
         */
 
     private:
+        ScopedPointer<StringDemoComponent> stringdemoComp;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
     };
     
